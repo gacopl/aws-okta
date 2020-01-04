@@ -124,6 +124,7 @@ func writeToCredentialsRun(cmd *cobra.Command, args []string) error {
 	section.Key("aws_secret_access_key").SetValue(creds.SecretAccessKey)
 	section.Key("aws_session_token").SetValue(creds.SessionToken)
 	section.Key("aws_security_token").SetValue(creds.SessionToken)
+	section.Key("aws_okta_session_expiration").SetValue(fmt.Sprintf("%d", p.GetExpiration().Unix()))
 
 	credFile, err := os.OpenFile(credFilePath, os.O_WRONLY, 0600)
 	if err != nil {
